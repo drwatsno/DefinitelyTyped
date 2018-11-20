@@ -6,6 +6,9 @@
 /// <reference types="node" />
 import { Server } from 'http';
 
-declare function stoppable(server: Server, grace?: number): Server;
+export type StoppableServer = Server & { stop: StoppableFn };
+export type StoppableFn = (callback: () => void) => void;
+
+declare function stoppable(server: Server, grace?: number): StoppableServer;
 
 export = stoppable;
